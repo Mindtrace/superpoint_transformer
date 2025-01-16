@@ -1,10 +1,13 @@
-from setuptools import setup, find_packages
+from setuptools import setup, find_namespace_packages
 
 setup(
     name="spt",
     version="0.1.0",
     package_dir={"": "src"},  # Tell setuptools packages are under src
-    packages=find_packages(where="src"),  # Find packages under src directory
+    packages=find_namespace_packages(
+        where="src",
+        include=["*"],  # Include all packages under src
+    ),
     install_requires=[
         "torch",
         "torch_geometric",
@@ -14,6 +17,9 @@ setup(
         "matplotlib",
         "plyfile",
         "h5py",
+        "hydra-core",
+        "pytorch-lightning",
+        "wandb",
     ],
     author="Original: drprojects, Fork: Mindtrace",
     description="SuperPoint Transformer for Point Cloud Processing",
